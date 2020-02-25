@@ -1,0 +1,37 @@
+﻿using IdentityModel;
+using IdentityServer4;
+using IdentityServer4.Models;
+using System.Collections.Generic;
+
+namespace IdentityServer4
+{
+    public static class Config
+    {
+        public static IEnumerable<ApiResource> Apis =>
+            new List<ApiResource>
+            {
+                new ApiResource("ApiOne", "My API")
+            };
+
+        public static IEnumerable<Client> Clients =>
+            new List<Client>
+            {
+                new Client
+                {
+                    ClientId = "client",
+
+                    // no interactive user, use the clientid/secret for authentication
+                    AllowedGrantTypes = GrantTypes.ClientCredentials ,
+
+                    // secret for authentication
+                    ClientSecrets =
+                    {
+                        new Secret("secret".ToSha256())
+                    },
+
+                    // scopes that client has access to
+                    AllowedScopes = { "ApiOne" }
+                }
+            };
+    }
+}
