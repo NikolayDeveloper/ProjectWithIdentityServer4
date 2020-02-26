@@ -14,7 +14,9 @@ namespace Client
             var disco =  client.GetDiscoveryDocumentAsync("http://localhost:5000").GetAwaiter().GetResult();
             if (disco.IsError)
             {
+                Console.WriteLine("----------------if something wrong----------------------");
                 Console.WriteLine(disco.Error);
+                Console.WriteLine("----------------if something wrong----------------------");
                 return;
             }
             else
@@ -35,7 +37,9 @@ namespace Client
 
             if (tokenResponse.IsError)
             {
+                Console.WriteLine("----------------if something wrong----------------------");
                 Console.WriteLine(tokenResponse.Error);
+                Console.WriteLine("----------------if something wrong----------------------");
                 return;
             }
 
@@ -50,7 +54,9 @@ namespace Client
             var response =  apiClient.GetAsync("http://localhost:5001/identity").GetAwaiter().GetResult();
             if (!response.IsSuccessStatusCode)
             {
+                Console.WriteLine("----------------if something wrong----------------------");
                 Console.WriteLine(response.StatusCode);
+                Console.WriteLine("----------------if something wrong----------------------");
             }
             else
             {

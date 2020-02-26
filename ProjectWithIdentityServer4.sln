@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiOne", "ApiOne\ApiOne.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{1FEF8048-1177-4CE7-98F0-81C3B64C4715}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{5890A733-4DD4-4143-8DCB-14AEE645DF71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1FEF8048-1177-4CE7-98F0-81C3B64C4715}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FEF8048-1177-4CE7-98F0-81C3B64C4715}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FEF8048-1177-4CE7-98F0-81C3B64C4715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,14 @@ namespace IdentityServer4
 {
     public static class Config
     {
+        public static List<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+    {
+        new IdentityResources.OpenId(),
+        new IdentityResources.Profile() // <-- usefull
+    };
+        }
         public static IEnumerable<ApiResource> Apis =>
             new List<ApiResource>
             {
@@ -31,6 +39,26 @@ namespace IdentityServer4
 
                     // scopes that client has access to
                     AllowedScopes = { "ApiOne" }
+                },
+                // JavaScript Client
+                new Client
+                {
+                    ClientId = "client_js",
+                  //  ClientName = "JavaScript Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+
+                    RedirectUris =           { "http://localhost:5003/callback" },
+                    PostLogoutRedirectUris = { "http://localhost:5003/index.html" },
+                    AllowedCorsOrigins =     { "http://localhost:5003" },
+
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "ApiOne"
+                    }
                 }
             };
     }

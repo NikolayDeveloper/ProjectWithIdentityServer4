@@ -34,6 +34,16 @@ namespace ApiOne
 
                 options.Audience = "ApiOne";
             });
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:5003")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
        
@@ -47,7 +57,7 @@ namespace ApiOne
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("default");
             app.UseAuthentication();
             app.UseAuthorization();
 
