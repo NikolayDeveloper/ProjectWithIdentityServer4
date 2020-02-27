@@ -10,7 +10,7 @@ namespace ApiOne.Controllers
 {
     [Route("identity")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class IdentityController : ControllerBase
     {
         [HttpGet]

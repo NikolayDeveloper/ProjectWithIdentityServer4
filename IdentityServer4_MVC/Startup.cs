@@ -2,57 +2,44 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer.Areas.Identity.Data;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
+using IdentityServer4_MVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using IdentityServer4;
 
-namespace IdentityServer4
+namespace IdentityServer4_MVC
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<IdentityServerDBContext>(options =>
-            //       options.UseSqlServer(
-            //           Configuration.GetConnectionString("IdentityServerDBContextConnection")));
-
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-            //    .AddEntityFrameworkStores<IdentityServerDBContext>();
-
-            //services.AddDbContext<IdentityServerDBContext>(options =>
-            //  options.UseSqlServer(Configuration.GetConnectionString("IdentityServerDBContextConnection")));
-
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
-            //{
-            //    opt.SignIn.RequireConfirmedAccount = false;
-            //})
-            //.AddEntityFrameworkStores<IdentityServerDBContext>()
-            //.AddDefaultTokenProviders(); 
-
-
-
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             var builder = services.AddIdentityServer()
                          .AddInMemoryApiResources(Config.Apis)
                          .AddInMemoryClients(Config.Clients)
                          .AddInMemoryIdentityResources(Config.GetIdentityResources())
-                         .AddAspNetIdentity<ApplicationUser>()
+                         .AddAspNetIdentity<IdentityUser>()
                          .AddDeveloperSigningCredential();
-           
+
             services.AddCors(options =>
             {
                 options.AddPolicy("default", policy =>
@@ -62,26 +49,32 @@ namespace IdentityServer4
                         .AllowAnyMethod();
                 });
             });
-            services.ConfigureApplicationCookie(config =>
-            {
-                config.LoginPath = "/Identity/Account/Login";
-                
-            });
-            //services.AddAuthentication()
-            //    .AddCookie("Cookie", config => { config.LoginPath = "/dfdfd"; });
-            // services.AddMvc(); 
+
+
+
+            services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
-       
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
+
             app.UseAuthentication();
             app.UseIdentityServer();
             app.UseAuthorization();
@@ -89,6 +82,9 @@ namespace IdentityServer4
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

@@ -29,7 +29,7 @@ namespace ApiOne
             services.AddAuthentication("Bearer")
             .AddJwtBearer("Bearer", options =>
             {
-                options.Authority = "http://localhost:5000";
+                options.Authority = "https://localhost:44375";
                 options.RequireHttpsMetadata = false;
 
                 options.Audience = "ApiOne";
@@ -44,6 +44,7 @@ namespace ApiOne
                         .AllowAnyMethod();
                 });
             });
+            services.AddHttpClient();
         }
 
        
@@ -60,6 +61,7 @@ namespace ApiOne
             app.UseCors("default");
             app.UseAuthentication();
             app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

@@ -44,8 +44,8 @@ namespace IdentityServer4
                 new Client
                 {
                     ClientId = "client_js",
-                  //  ClientName = "JavaScript Client",
-                    AllowedGrantTypes = GrantTypes.Code,
+                    ClientName = "Angular Client",
+                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
                     RequirePkce = true,
                     RequireClientSecret = false,
                     RequireConsent=false,
@@ -59,7 +59,8 @@ namespace IdentityServer4
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "ApiOne"
-                    }
+                    },
+                    AllowAccessTokensViaBrowser=true
                 }
             };
     }

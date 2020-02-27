@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer4\IdentityServer.csproj", "{349D6E7C-9779-4906-83A7-5CC4FB217C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiOne", "ApiOne\ApiOne.csproj", "{25554470-3F70-4DA9-9D29-DB96B2928E1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiOne", "ApiOne\ApiOne.csproj", "{25554470-3F70-4DA9-9D29-DB96B2928E1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{1FEF8048-1177-4CE7-98F0-81C3B64C4715}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{1FEF8048-1177-4CE7-98F0-81C3B64C4715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular", "Angular\Angular.csproj", "{5890A733-4DD4-4143-8DCB-14AEE645DF71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Angular", "Angular\Angular.csproj", "{5890A733-4DD4-4143-8DCB-14AEE645DF71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer4_MVC", "IdentityServer4_MVC\IdentityServer4_MVC.csproj", "{FB680E21-2924-401E-AB6E-07134210DD1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5890A733-4DD4-4143-8DCB-14AEE645DF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB680E21-2924-401E-AB6E-07134210DD1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB680E21-2924-401E-AB6E-07134210DD1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB680E21-2924-401E-AB6E-07134210DD1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB680E21-2924-401E-AB6E-07134210DD1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
